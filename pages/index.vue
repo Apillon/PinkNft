@@ -48,7 +48,7 @@ function onClaim(m: Metadata, hash?: string) {
       <FormClaim v-else @claim="onClaim" />
 
       <p class="text-center my-8">
-        Thrilled to welcome you to our ever-expanding Pink gaming universe! This NFTgives access to
+        Thrilled to welcome you to our ever-expanding Pink gaming universe! This NFT gives access to
         PINK games and can be used to earn PINK Points. How PINK Pass evolves is up to the Pink
         community to define. The MINT window for the PINK pass NFT concludes on the 16th of
         February.
