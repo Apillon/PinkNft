@@ -2,7 +2,7 @@
 import { useAccount, useConnect, useWalletClient } from 'use-wagmi';
 
 useHead({
-  title: 'Apillon whitelist claim prebuilt solution',
+  title: 'PINK PASS',
 });
 
 const message = useMessage();
