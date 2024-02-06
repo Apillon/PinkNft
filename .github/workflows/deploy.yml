@@ -18,6 +18,12 @@ jobs:
         with:
           node-version: 16
 
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run generate
+
       - name: Deploy website
         env:
           APILLON_API_KEY: ${{ secrets.APILLON_API_KEY }}
@@ -25,4 +31,4 @@ jobs:
           WEBSITE_UUID: ${{ secrets.WEBSITE_UUID }}
         run: |
           npm i -g @apillon/cli
-          apillon hosting deploy-website ./ --uuid $WEBSITE_UUID --key $APILLON_API_KEY --secret $APILLON_API_SECRET
+          apillon hosting deploy-website ./.output/public --uuid $WEBSITE_UUID --key $APILLON_API_KEY --secret $APILLON_API_SECRET
