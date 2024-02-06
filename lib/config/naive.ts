@@ -111,7 +111,7 @@ export const NaiveTheme: GlobalThemeOverrides = {
     borderRadiusSmall: '8px',
     borderRadiusMedium: '8px',
     borderRadiusLarge: '12px',
-    colorDisabledPrimary: colors.bg.lighter,
+    colorDisabledPrimary: colors.orange,
     colorInfo: colors.white,
     colorHover: colors.bg.lighter,
     colorHoverInfo: colors.white,

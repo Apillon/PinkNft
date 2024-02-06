@@ -1,18 +1,11 @@
 <script lang="ts" setup>
-import { useAccount, useConnect, useWalletClient } from 'use-wagmi';
+import { useAccount } from 'use-wagmi';
 
 useHead({
   title: 'PINK PASS',
 });
 
-const message = useMessage();
-const { handleError } = useErrors();
-
 const { address, isConnected } = useAccount();
-const { data: walletClient, refetch } = useWalletClient();
-const { connect, connectors } = useConnect();
-
-const loading = ref<boolean>(false);
 const metadata = ref<Metadata | null>(null);
 const txHash = ref<string | undefined>();
 

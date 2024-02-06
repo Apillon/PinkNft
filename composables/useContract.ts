@@ -1,6 +1,5 @@
 import {
   useAccount,
-  useEstimateGas,
   useNetwork,
   usePublicClient,
   useSwitchNetwork,
@@ -17,7 +16,7 @@ export default function useContract() {
   const { address } = useAccount();
   const { switchNetwork } = useSwitchNetwork();
   const publicClient = usePublicClient();
-  const { data: walletClient } = useWalletClient();
+  const { data: walletClient, refetch } = useWalletClient();
 
   const contractAddress = config.public.CONTRACT_ADDRESS as `0x${string}`;
   const usedChain = config.public.env === 'prod' ? mainnet : sepolia;
@@ -57,13 +56,18 @@ export default function useContract() {
       account: address.value,
     });
     const gasLimit = (gas * 110n) / 100n;
+
     return await contract.value.write.mint([], {}, { gasLimit });
   }
 
   /**
    * Helper for initializing specific contract
    */
-  function initContract() {
+  async function initContract() {
+    if (!walletClient.value) {
+      await refetch();
+      await sleep(10);
+    }
     if (!chain || !chain.value || chain?.value.id !== usedChain.id) {
       switchNetwork(usedChain.id);
     }
@@ -77,7 +81,6 @@ export default function useContract() {
         walletClient: walletClient.value || undefined,
         publicClient: publicClient.value,
       });
-      console.log(contract.value);
     }
   }
 

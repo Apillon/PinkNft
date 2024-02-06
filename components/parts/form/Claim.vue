@@ -2,6 +2,8 @@
 const emits = defineEmits(['claim']);
 const message = useMessage();
 const txWait = useTxWait();
+const timestamp = useTimestamp();
+
 const {
   contract,
   initContract,
@@ -14,7 +16,6 @@ const {
   isWalletUsed,
   mint,
 } = useContract();
-const timestamp = useTimestamp();
 
 const loading = ref<boolean>(false);
 const loadingPage = ref<boolean>(true);
@@ -27,7 +28,7 @@ const hasEnded = computed<boolean>(() => dropEnd.value - timestamp.value < 0);
 const disabled = computed<boolean>(() => walletUsed.value || !hasStarted.value || hasEnded.value);
 
 onMounted(async () => {
-  initContract();
+  await initContract();
 
   dropStart.value = await getDropStart();
   dropEnd.value = await getDropEnd();
