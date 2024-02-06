@@ -16,8 +16,9 @@ if (env === Environments.prod) {
 }
 
 const meta = {
-  title: 'Apillon whitelist claim prebuild solution',
-  description: 'whitelist claim',
+  title: 'PINK PASS',
+  description:
+    'The Pink Pass grants access to the Pink gaming tournament, enabling participants to earn PINK Points. PINK is a Polkadot meme coin issued on AssetHub.',
   url: 'https://apillon.io/',
 };
 
