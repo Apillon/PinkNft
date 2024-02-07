@@ -66,7 +66,7 @@ export default function useContract() {
   async function initContract() {
     if (!walletClient.value) {
       await refetch();
-      await sleep(10);
+      await sleep(200);
     }
     if (!chain || !chain.value || chain?.value.id !== usedChain.id) {
       switchNetwork(usedChain.id);
