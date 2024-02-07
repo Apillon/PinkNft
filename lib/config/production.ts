@@ -7,3 +7,5 @@ const config: ConfigInterface = {
   CLAIM_START: 1707337193,
   CLAIM_END: 1707398393,
 };
+
+export default config;
