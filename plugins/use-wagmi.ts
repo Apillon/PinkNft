@@ -4,10 +4,11 @@ import { CoinbaseWalletConnector } from 'use-wagmi/connectors/coinbaseWallet';
 import { WalletConnectConnector } from 'use-wagmi/connectors/walletConnect';
 import { createPublicClient, http } from 'viem';
 import { mainnet, sepolia } from 'use-wagmi/chains';
+import { Environments } from '~/lib/values/general.values';
 
 export default defineNuxtPlugin(nuxtApp => {
   const nuxtConfig = useRuntimeConfig();
-  const chain = nuxtConfig.public.env === 'prod' ? mainnet : sepolia;
+  const chain = nuxtConfig.public.ENV === Environments.prod ? mainnet : sepolia;
   const chains = [chain];
 
   const config = createConfig({

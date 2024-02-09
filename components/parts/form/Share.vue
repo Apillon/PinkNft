@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { Environments } from '~/lib/values/general.values';
+
 defineProps({
   metadata: { type: Object as PropType<Metadata>, default: null },
   txHash: { type: String, default: null },
@@ -6,7 +8,9 @@ defineProps({
 
 const config = useRuntimeConfig();
 const scanUrl =
-  config.public.env === 'prod' ? 'https://etherscan.io/tx/' : 'https://sepolia.etherscan.io/tx/';
+  config.public.ENV === Environments.prod
+    ? 'https://etherscan.io/tx/'
+    : 'https://sepolia.etherscan.io/tx/';
 </script>
 
 <template>
