@@ -6,8 +6,17 @@
 
     &__piece {
       @apply relative bg-pink-dark rounded-2xl mx-0 w-20 pt-4 pb-3;
+    }
 
-      &:not(:last-child) {
+    &__slot {
+      @apply text-xs  lowercase;
+    }
+
+    .no-animation__card {
+      @apply font-bold;
+    }
+    @screen md {
+      .flip-clock__piece:not(:last-child) {
         &::before,
         &::after {
           content: '';
@@ -20,14 +29,6 @@
           @apply top-12;
         }
       }
-    }
-
-    &__slot {
-      @apply text-xs  lowercase;
-    }
-
-    .no-animation__card {
-      @apply font-bold;
     }
   }
 }

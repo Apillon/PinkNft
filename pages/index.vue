@@ -5,33 +5,21 @@ useHead({
   title: 'PINK PASS',
 });
 
-const { address, isConnected } = useAccount();
-const metadata = ref<Metadata | null>(null);
-const txHash = ref<string | undefined>();
-
-watch(
-  () => address.value,
-  walletAddress => {
-    if (!walletAddress) {
-      metadata.value = null;
-    }
-  }
-);
+const router = useRouter();
+const { isConnected } = useAccount();
 
 function onClaim(m: Metadata, hash?: string) {
-  metadata.value = m;
-  txHash.value = hash;
+  router.push({ name: 'share', query: { ...m, txHash: hash } });
 }
 </script>
 
 <template>
   <div>
-    <div class="text-center m-10 mb-4">
+    <div class="text-center m-6 md:m-10 mb-4">
       <NuxtIcon name="pink-logo" class="inline-flex icon-auto mx-auto" filled />
     </div>
 
-    <FormShare v-if="metadata" :metadata="metadata" :tx-hash="txHash" />
-    <div v-else class="max-w-md w-full md:px-6 mx-auto pb-8">
+    <div class="max-w-md w-full md:px-6 mx-auto pb-8">
       <NftCountdown
         :start="($config.public.CLAIM_START + 60) * 1000"
         :end="$config.public.CLAIM_END * 1000"

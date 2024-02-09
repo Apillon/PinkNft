@@ -1,12 +1,36 @@
 <script lang="ts" setup>
+import { prepareOG } from '~/lib/utils/helpers';
 import { Environments } from '~/lib/values/general.values';
 
-defineProps({
-  metadata: { type: Object as PropType<Metadata>, default: null },
-  txHash: { type: String, default: null },
+useHead({
+  title: 'PINK PASS',
 });
 
+const router = useRouter();
+const { query, fullPath } = useRoute();
 const config = useRuntimeConfig();
+
+useSeoMeta(
+  prepareOG(
+    `Just minted my ${query.name} NFT on https://nft.dotispink.xyz!`,
+    `🚀 $PINK @pinkonomic #NFTs`,
+    `${query.image}`
+  )
+);
+
+onBeforeMount(() => {
+  if (!query.name || !query.image) {
+    router.push('/');
+  }
+});
+
+const metadata = ref<Metadata | null>({
+  name: `${query?.name}`,
+  description: `${query?.description}`,
+  image: `${query?.image}`,
+});
+const txHash = ref<string | undefined>(`${query?.txHash}`);
+
 const scanUrl =
   config.public.ENV === Environments.prod
     ? 'https://etherscan.io/tx/'
@@ -16,8 +40,8 @@ const scanUrl =
 <template>
   <div v-if="metadata" class="max-w-md w-full md:px-6 my-12 mx-auto">
     <div class="my-8 text-center">
-      <h3 class="mb-6">Celebrate your triumph!</h3>
-      <p>Display Your '{{ metadata.name }}' NFT Collectible on Social Media for All to Envy.</p>
+      <h3 class="mb-6">Just minted my #{{ metadata.name }} NFT on nft.dotispink.xyz!</h3>
+      <p>🚀 $PINK @pinkonomic #NFTs</p>
     </div>
 
     <div class="rounded-lg overflow-hidden mb-8">
@@ -29,7 +53,7 @@ const scanUrl =
       <div class="mt-4 text-center">
         <p class="mb-4">{{ metadata.description }}</p>
         <a
-          v-if="txHash"
+          v-if="query?.txHash && txHash"
           :href="`${scanUrl}${txHash}`"
           class="text-yellow hover:underline"
           target="_blank"
@@ -42,12 +66,19 @@ const scanUrl =
     <Btn
       type="secondary"
       size="large"
-      :href="`https://twitter.com/intent/tweet?text=Display Your '${metadata.name}' NFT Collectible on Social Media for All to Envy.`"
+      :href="`https://twitter.com/intent/tweet?text=Just minted my ${metadata.name} NFT on nft.dotispink.xyz!&url=https://nft.dotispink.xyz/`"
     >
       <span class="inline-flex gap-2 items-center">
         <NuxtIcon name="x" class="text-xl" />
         <span>Share on X</span>
       </span>
     </Btn>
+    <a
+      class="twitter-share-button hidden"
+      target="”_blank”"
+      :href="`https://twitter.com/intent/tweet?url=https://nft.dotispink.xyz${fullPath}`"
+    >
+      Twitter
+    </a>
   </div>
 </template>

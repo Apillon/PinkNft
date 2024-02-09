@@ -74,3 +74,25 @@ export function areArraysEqual(a1: any, a2: any, sorted = false) {
 export function copyToClipboard(text: string) {
   navigator.clipboard.writeText(text);
 }
+
+/**
+ * OG data
+ */
+export function prepareOG(
+  title = 'PINK PASS',
+  description = 'The Pink Pass grants access to the Pink gaming tournament, enabling participants to earn PINK Points. PINK is a Polkadot meme coin issued on AssetHub.',
+  image = '/images/super-gavin.jpg',
+  url = 'https://nft.dotispink.xyz/'
+) {
+  return {
+    title,
+    ogTitle: title,
+    twitterTitle: title,
+    description,
+    ogDescription: description,
+    twitterDescription: description,
+    ogImage: image,
+    twitterImage: image,
+    ogUrl: url,
+  };
+}

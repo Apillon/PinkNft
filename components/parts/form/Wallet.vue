@@ -7,7 +7,7 @@ const { connect, connectors, pendingConnector } = useConnect();
 
 <template>
   <div class="max-w-md w-full md:px-6 my-12 mx-auto">
-    <img :src="WalletSVG" class="mx-auto" width="241" height="240" alt="wallet" />
+    <img :src="WalletSVG" class="mx-auto h-32 md:h-auto" width="241" height="240" alt="wallet" />
 
     <div class="my-8 text-center">
       <h3 class="mb-6 text-black">Choose wallet</h3>
@@ -24,7 +24,6 @@ const { connect, connectors, pendingConnector } = useConnect();
         type="secondary"
         size="large"
         :loading="connector.id === pendingConnector?.id"
-        :disabled="!connector.ready"
         @click="connect({ connector })"
       >
         <span class="inline-flex gap-2 items-center">

@@ -55,7 +55,7 @@
 
 /** Container */
 .container {
-  @apply md:px-20;
+  @apply px-8 md:px-20;
 }
 
 /** Date picker */
@@ -135,8 +135,7 @@
 }
 #kalm .nuxt-icon {
   &.icon-auto svg {
-    width: auto;
-    height: auto;
+    @apply w-auto h-auto max-w-full;
   }
   svg {
     margin-bottom: 0;

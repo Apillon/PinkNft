@@ -19,7 +19,8 @@ const meta = {
   title: 'PINK PASS',
   description:
     'The Pink Pass grants access to the Pink gaming tournament, enabling participants to earn PINK Points. PINK is a Polkadot meme coin issued on AssetHub.',
-  url: 'https://apillon.io/',
+  url: 'https://nft.dotispink.xyz/',
+  image: '/images/super-gavin.jpg',
 };
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
@@ -94,12 +95,13 @@ export default defineNuxtConfig({
         { name: 'og:title', content: meta.title, hid: 'og:title' },
         { name: 'og:description', content: meta.description, hid: 'og:description' },
         { name: 'og:url', content: meta.url, hid: 'og:url' },
-        // { name: 'og:image', content: meta.image },
+        { name: 'og:image', content: meta.image },
         { name: 'og:type', content: 'website' },
         { name: 'twitter:title', content: meta.title, hid: 'twitter:title' },
         { name: 'twitter:description', content: meta.description, hid: 'twitter:description' },
         { name: 'twitter:url', content: meta.url, hid: 'twitter:url' },
         { name: 'twitter:card', content: 'summary_large_image' },
+        { name: 'twitter:image', content: meta.image },
       ],
 
       link: [{ rel: 'icon', type: 'image/png', href: '/images/favicon.png' }],
